@@ -3,7 +3,28 @@
 @section("title", "Welcome to the Student Administration")
 
 @section("main")
-    <h1>Courses</h1>
-    <p>You selected the course with id:{{$id}}</p>
-    <p>List of students enrolled</p>
+    @foreach($courses as $course)
+        <div class="mt-3"><h1>{{$course->name}}</h1>
+            <p>{{$course->description}}</p>
+
+            @if ($course->studentcourses->count() == 0)
+                <div class="alert alert-danger alert-dismissible fade show">
+                    No students enrolled!
+                    <button type="button" class="close" data-dismiss="alert">
+                        <span>&times;</span>
+                    </button>
+                </div>
+
+            @else
+                <p>List of students enrolled:</p>
+                <ul>
+                    @foreach($course->studentcourses as $students)
+                        <li>{{$students->student->first_name}} {{$students->student->last_name}}
+                            (semester {{$students->semester}})
+                        </li>
+                    @endforeach
+                </ul>
+            @endif
+        </div>
+    @endforeach
 @endsection

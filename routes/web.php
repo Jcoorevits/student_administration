@@ -16,4 +16,22 @@ use Illuminate\Support\Facades\Route;
 Route::view("/", "index.index");
 
 Route::get('courses', 'CourseController@index');
-Route::get('courses/{id}', 'CourseController@show');
+
+
+Route::middleware(['auth'])->group(function () {
+    Route::redirect('/course{id}', '/');
+    Route::get('courses/{id}', 'CourseController@show');
+});
+
+/*Route::get('admin/programmes', 'Admin\ProgrammeController@index');*/
+Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
+    Route::redirect('/', '/admin/programmes');
+    Route::resource('programmes', 'Admin\ProgrammeController');
+});
+
+
+Auth::routes(['register' => false]);
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

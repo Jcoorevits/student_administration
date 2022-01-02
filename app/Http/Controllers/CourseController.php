@@ -25,14 +25,10 @@ class CourseController extends Controller
                 ['description', 'like', $textFilter]])
             ->orwhere([['programme_id', 'like', $dropFilter],
                 ['name', 'like', $textFilter]])
+            ->orderBy('name')
             ->get();
-        /*$courses = Course::with('programme')
-            ->where('programme_id', 'like', $dropFilter)
-            ->where('description', 'like', $textFilter)
-            ->orwhere('programme_id', 'like', $dropFilter)
-            ->where('name', 'like', $textFilter)
-            ->get();*/
-        if ($dropFilter == 0) {
+
+        if ($dropFilter == "%%") {
             $programme = "all programmes";
         } else {
             $programme = " the programme <b>'" . DB::table('programmes')->where('id', $dropFilter)->value('name') . "'</b>";
@@ -51,6 +47,9 @@ class CourseController extends Controller
 
     public function show($id)
     {
-        return view('courses.show', ['id' => $id]);
+        $courses = Course::with('programme')->with('studentcourses')->with('studentcourses.student')->where('id', '=', $id )->orderBy('name')->get();
+        $results = compact('courses');
+        Json::dump($results);
+        return view('courses.show', $results);
     }
 }

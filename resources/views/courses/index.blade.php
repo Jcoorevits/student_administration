@@ -23,11 +23,13 @@
                         <p class="card-text">{{$course['description']}}</p>
                         <p class="card-text text-primary text-uppercase">{{$course->programme->name}}</p>
                     </div>
+                    @auth()
                     <div class="card-footer d-flex justify-content-between">
                         <a href="courses/{{ $course->id }}"
                            class="btn btn-outline-info btn btn-primary btn-block text-light">Manage Students</a>
 
                     </div>
+                    @endauth
                 </div>
             </div>
         @endforeach
