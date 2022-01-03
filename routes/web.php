@@ -27,6 +27,9 @@ Route::middleware(['auth'])->group(function () {
 Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::redirect('/', '/admin/programmes');
     Route::resource('programmes', 'Admin\ProgrammeController');
+    Route::resource('programmes/{id}', 'CourseController')->only([
+        /*'create',*/ 'store'
+    ]);
 });
 
 

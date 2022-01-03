@@ -38,11 +38,9 @@
 @section('script_after')
     <script>
         $('.deleteProgramme').click(function () {
-            /*const records = $(this).data('records');*/
+
             let msg = `Delete this programme?`;
-            /* if (records > 0) {
-                 msg += `\nThe ${records} records of this genre will also be deleted!`
-             }*/
+
             if (confirm(msg)) {
                 $(this).closest('form').submit();
             }

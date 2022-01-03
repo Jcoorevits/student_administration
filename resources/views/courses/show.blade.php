@@ -3,8 +3,10 @@
 @section("title", "Welcome to the Student Administration")
 
 @section("main")
-    @foreach($courses as $course)
-        <div class="mt-3"><h1>{{$course->name}}</h1>
+    <div class="mt-3">
+        @foreach($courses as $course)
+
+            <h1>{{$course->name}}</h1>
             <p>{{$course->description}}</p>
 
             @if ($course->studentcourses->count() == 0)
@@ -25,6 +27,8 @@
                     @endforeach
                 </ul>
             @endif
-        </div>
-    @endforeach
+
+        @endforeach
+
+    </div>
 @endsection
