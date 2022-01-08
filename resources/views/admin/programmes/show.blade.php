@@ -17,7 +17,7 @@
                 @endforeach
             </ul>
         @endif
-        <form action="" method="Post">
+        <form action="" method="Get">
             @csrf
             <div class="form-group">
                 <div class="mt-3"><label for="name">Name</label>

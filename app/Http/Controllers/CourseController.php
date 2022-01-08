@@ -69,7 +69,7 @@ class CourseController extends Controller
         $course->save();
 
 
-        $toUrl = "/admin/programmes/".$request->id;
+        $toUrl = "/admin/programmes/" . $request->id;
         return redirect($toUrl);
     }
 }

@@ -18,7 +18,11 @@ class ProgrammeController extends Controller
      */
     public function index()
     {
-        $programmes = DB::table("programmes")->orderBy('name')->get();
+
+       /* $courses = DB::table('courses')->orderBy('name')->get();*/
+
+        $programmes = Programme::orderby('name')->withCount('courses')->get();
+        /*$programmes = DB::table("programmes")->orderBy('name')->withCount('courses')->get();*/
         $results = compact('programmes');
         Json::dump($results);
         return view('admin.programmes.index', $results);
@@ -123,7 +127,7 @@ class ProgrammeController extends Controller
     public function destroy(Programme $programme)
     {
         $programme->delete();
-        session()->flash('success', "The genre <b>$programme->name</b> has been deleted");
+        session()->flash('success', "The programme '<b>$programme->name</b>' has been successfully deleted");
         return redirect('admin/programmes');
     }
 }

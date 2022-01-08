@@ -17,7 +17,7 @@
     <div class="row ">
         @foreach($courses as $course)
             <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3 p-0 m-0 mb-3 row justify-content-center">
-                <div class="card m-3">
+                <div class="card m-3 cardCourse">
                     <div class="card-body row flex-column justify-content-between m-0">
                         <div><h5 class="card-title">{{ $course->name }}</h5></div>
                         <div><p class="card-text">{{$course['description']}}</p></div>
