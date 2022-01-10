@@ -25,7 +25,7 @@ class Programme2Controller extends Controller
      */
     public function create()
     {
-        //
+        return redirect('admin/programmes2');
     }
 
     /**
@@ -36,7 +36,21 @@ class Programme2Controller extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validate $request
+        $this->validate($request,[
+            'name' => 'required|min:3|unique:programmes,name'
+        ]);
+
+        // Create new $programme
+        $programme = new Programme();
+        $programme->name = $request->name;
+        $programme->save();
+
+        // Return a success message to master page
+        return response()->json([
+            'type' => 'success',
+            'text' => "The programme <b>$programme->name</b> has been added"
+        ]);
     }
 
     /**
@@ -47,7 +61,7 @@ class Programme2Controller extends Controller
      */
     public function show(Programme $programme)
     {
-        //
+        return redirect('admin/programmes2');
     }
 
     /**
@@ -58,7 +72,7 @@ class Programme2Controller extends Controller
      */
     public function edit(Programme $programme)
     {
-        //
+        return redirect('admin/programmes2');
     }
 
     /**
@@ -70,7 +84,20 @@ class Programme2Controller extends Controller
      */
     public function update(Request $request, Programme $programme)
     {
-        //
+        // Validate $request
+        $this->validate($request,[
+            'name' => 'required|min:3|unique:programmes,name,' . $programme->id
+        ]);
+
+        // Update genre
+        $programme->name = $request->name;
+        $programme->save();
+
+        // Return a success message to master page
+        return response()->json([
+            'type' => 'success',
+            'text' => "The genre <b>$programme->name</b> has been updated"
+        ]);
     }
 
     /**
