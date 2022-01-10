@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="nav">
 
     <div class="container"><a class="navbar-brand" href="/">Student Administration Application</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -10,7 +10,7 @@
             <ul class="navbar-nav mr-auto">
 
 
-                <li class="nav-item active">
+                <li class="nav-item">
                     <a class="nav-link" href="/">Home</a>
                 </li>
                 <li class="nav-item">
@@ -20,6 +20,8 @@
                     @if(auth()->user()->admin)
                         <li class="nav-item">
                             <a class="nav-link" href="/admin/programmes">programmes</a>
+                        </li><li class="nav-item">
+                            <a class="nav-link" href="/admin/programmes2">programmes2</a>
                         </li>
                     @endif
 
